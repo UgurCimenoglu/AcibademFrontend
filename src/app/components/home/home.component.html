@@ -1,0 +1,26 @@
+<div>
+    <nz-carousel nzAutoPlay style="height: 566px;">
+        <div nz-carousel-content *ngFor="let index of array">
+            <img src="{{index.img}}" alt="" srcset="">
+        </div>
+    </nz-carousel>
+</div>
+<div style="padding:30px;">
+    <div nz-row [nzGutter]="8">
+      <div nz-col [nzSpan]="8">
+        <nz-card nzTitle="Police 1">
+          <p>Icerik-1</p>
+        </nz-card>
+      </div>
+      <div nz-col [nzSpan]="8">
+        <nz-card nzTitle="Police 2">
+          <p>Icerik-2</p>
+        </nz-card>
+      </div>
+      <div nz-col [nzSpan]="8">
+        <nz-card nzTitle="Police 3">
+          <p>Icerik-3</p>
+        </nz-card>
+      </div>
+    </div>
+  </div>
