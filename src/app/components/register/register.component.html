@@ -1,0 +1,35 @@
+<div id="registerForm">
+    <form nz-form [formGroup]="validateForm" class="register-form" (ngSubmit)="submitForm()">
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your First Name!">
+                <nz-input-group nzPrefixIcon="user">
+                    <input type="text" nz-input formControlName="firstName" placeholder="First Name" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Last Name!">
+                <nz-input-group nzPrefixIcon="user">
+                    <input type="text" nz-input formControlName="lastName" placeholder="Last Name" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Email!">
+                <nz-input-group nzPrefixIcon="user">
+                    <input type="text" nz-input formControlName="Email" placeholder="Email" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Password!">
+                <nz-input-group nzPrefixIcon="lock">
+                    <input type="password" nz-input formControlName="password" placeholder="Password" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <button nz-button class="register-form-button register-form-margin" [nzType]="'primary'">Register</button>
+        Üye misin? Hemen
+        <a> Giriş Yap!</a>
+    </form>
+</div>

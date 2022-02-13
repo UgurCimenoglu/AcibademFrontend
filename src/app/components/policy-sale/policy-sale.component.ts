@@ -1,4 +1,7 @@
+import { PolicyService } from './../../services/policy.service';
 import { Component, OnInit } from '@angular/core';
+import { Policy } from 'src/app/models/policy';
+import { PolicyResponseModel } from 'src/app/models/policyResponseModel';
 
 @Component({
   selector: 'app-policy-sale',
@@ -7,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PolicySaleComponent implements OnInit {
 
+  Policies: Policy[] = [];
   current = 0;
 
   index = 'First-content';
@@ -45,9 +49,16 @@ export class PolicySaleComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  constructor(private policyService: PolicyService) { }
 
   ngOnInit(): void {
+    this.getAllPolicies();
   }
 
+  getAllPolicies():void {
+    this.policyService.getAllPolicies()
+      .subscribe(response => {
+        this.Policies = response.data;
+      })
+  }
 }

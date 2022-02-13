@@ -4,22 +4,26 @@
           <img id="acibadem-logo" src="https://www.acibadem.com.tr/assets/images/acibadem-saglik-grubu.png" alt="" srcset="">
       </div>
       <ul nz-menu nzTheme="dark" nzMode="inline">
-        <li nz-submenu nzTitle="User" nzIcon="user">
-          <ul>
-            <li nz-menu-item>Tom</li>
-            <li nz-menu-item>Bill</li>
-            <li nz-menu-item>Alex</li>
-          </ul>
-        </li>
-        <li nz-submenu nzTitle="Team" nzIcon="team">
-          <ul>
-            <li nz-menu-item>Team 1</li>
-            <li nz-menu-item>Team 2</li>
-          </ul>
-        </li>
+        
+          <li nz-menu-item>
+            <i nz-icon nzType="login" nzTheme="outline"></i>
+            <span>Giriş</span>
+          </li>
+          <li nz-menu-item>
+            <i nz-icon nzType="form" nzTheme="outline"></i>
+            <span>Kayıt Ol</span>
+          </li>
+          <li nz-menu-item>
+            <i nz-icon nzType="profile" nzTheme="outline"></i>
+            <span>Profilim</span>
+          </li>
+          <li nz-menu-item>
+            <i nz-icon nzType="home" nzTheme="outline"></i>
+            <span>Anasayfa</span>
+          </li>
         <li nz-menu-item>
-          <i nz-icon nzType="file"></i>
-          <span>File</span>
+          <i nz-icon nzType="heart" nzTheme="outline"></i>
+          <span>Poliçe Satın Al</span>
         </li>
       </ul>
     </nz-sider>
@@ -35,6 +39,8 @@
       <nz-content>
           <app-home></app-home>
           <app-policy-sale></app-policy-sale>
+          <app-login></app-login>
+          <app-register></app-register>
       </nz-content>
       <nz-footer>©2022 Uğur Çimenoğlu - Bupa Acıbadem</nz-footer>
     </nz-layout>
