@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.1.
 # Kayıt Ol Kısmına Vakit Yetmedi, Giriş İçin:
-Projenin backendindeki script.sql adlı scripti MSSSQL'de çalıştırdıktan sonra datalar ile birlikte veritabanı oluşacaktır,ardından 
+Projenin backendindeki script.sql adlı scripti MSSSQL'de çalıştırdıktan sonra datalar ile birlikte veritabanı oluşacaktır, veritabanı oluşturduktan sonra,
 email= ugur8@gmail.com 
 şifre= aaa
 bilgileri ile giriş yapabilirsiniz.
