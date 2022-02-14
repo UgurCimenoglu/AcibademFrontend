@@ -1,7 +1,8 @@
 # AcibademFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.1.
-#ÖNEMLİ!!! Kayıt Ol Kısmına Vakit Yetmedi, Giriş İçin:
+
+# ONEMLI!!!!!!! Kayıt Ol Kısmına Vakit Yetmedi, Giriş İçin:
 Backendde kodlanan kayıt ol kısmı çalışır durumda fakat süre kısıtından dolayı frontendini kodlamaya zamanım yetmedi.
 Projenin backendindeki script.sql adlı scripti MSSSQL'de çalıştırdıktan sonra datalar, tabloalr ve prosedürler ile birlikte veritabanı oluşacaktır, veritabanı oluşturduktan sonra,
 email= ugur8@gmail.com 
