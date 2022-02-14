@@ -1,23 +1,23 @@
 <div id="registerForm">
-    <form nz-form [formGroup]="validateForm" class="register-form" (ngSubmit)="submitForm()">
+    <form nz-form [formGroup]="registerForm" class="register-form" (ngSubmit)="register()">
         <nz-form-item>
             <nz-form-control nzErrorTip="Please input your First Name!">
                 <nz-input-group nzPrefixIcon="user">
-                    <input type="text" nz-input formControlName="firstName" placeholder="First Name" />
+                    <input type="text" nz-input formControlName="firstname" placeholder="First Name" />
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>
             <nz-form-control nzErrorTip="Please input your Last Name!">
                 <nz-input-group nzPrefixIcon="user">
-                    <input type="text" nz-input formControlName="lastName" placeholder="Last Name" />
+                    <input type="text" nz-input formControlName="lastname" placeholder="Last Name" />
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>
             <nz-form-control nzErrorTip="Please input your Email!">
                 <nz-input-group nzPrefixIcon="user">
-                    <input type="text" nz-input formControlName="Email" placeholder="Email" />
+                    <input type="text" nz-input formControlName="email" placeholder="Email" />
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
@@ -30,6 +30,6 @@
         </nz-form-item>
         <button nz-button class="register-form-button register-form-margin" [nzType]="'primary'">Register</button>
         Üye misin? Hemen
-        <a> Giriş Yap!</a>
+        <a routerLink="/login"> Giriş Yap!</a>
     </form>
 </div>

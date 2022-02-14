@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  constructor(private fb: FormBuilder, private loginService: LoginService,private notification: NzNotificationService, private router: Router) { }
+  constructor(private fb: FormBuilder, private loginService: LoginService, private notification: NzNotificationService, private router: Router) { }
 
   ngOnInit(): void {
     this.createLoginForm();
@@ -36,14 +36,21 @@ export class LoginComponent implements OnInit {
       this.loginService.login(login)
         .subscribe(response => {
           if (response.statusCode === 200) {
-            this.notification.success("Başarılı","Giriş Başarılı!");
-            localStorage.setItem("token",response.data.token);
-            localStorage.setItem("email",response.data.email);
+            this.notification.success("Başarılı", "Giriş Başarılı!");
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("email", response.data.email);
             this.router.navigate([""]);
-          }else{
-            this.notification.error("Hata","Kullanıcı adı vey şifre hatalıdır!")
+          } else {
+            this.notification.error("Hata", "Kullanıcı adı vey şifre hatalıdır!")
           }
         })
+    } else {
+      Object.values(this.loginForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
     }
   }
 }
