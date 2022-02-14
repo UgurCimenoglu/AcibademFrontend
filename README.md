@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.1.
 
+# ONEMLI!!!!!!! Kayıt Ol Kısmına Vakit Yetmedi, Giriş İçin:
+Backendde kodlanan kayıt ol kısmı çalışır durumda fakat süre kısıtından dolayı frontendini kodlamaya zamanım yetmedi.
+Projenin backendindeki script.sql adlı scripti MSSSQL'de çalıştırdıktan sonra datalar, tabloalr ve prosedürler ile birlikte veritabanı oluşacaktır, veritabanı oluşturduktan sonra,
+email= ugur8@gmail.com 
+şifre= aaa
+bilgileri ile frontendde giriş yapabilirsiniz.
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
