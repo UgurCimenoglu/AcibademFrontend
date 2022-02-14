@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-layout',
@@ -8,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 export class LayoutComponent implements OnInit {
 
   isCollapsed = false;
-  constructor() { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  isAuth(): boolean {
+    if (this.loginService.isAuthenticated()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  logOut() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    this.router.navigateByUrl("/").then(() => window.location.reload());
+  }
 }

@@ -8,8 +8,8 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // AntDesing
@@ -18,7 +18,7 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { LayoutComponent } from './components/layout/layout.component';
 import { IconDefinition } from '@ant-design/icons-angular';
-import {NzBreadCrumbModule} from 'ng-zorro-antd/breadcrumb';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
@@ -88,12 +88,14 @@ import { HomeComponent } from './components/home/home.component';
 import { PolicySaleComponent } from './components/policy-sale/policy-sale.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { AdminpageComponent } from './components/adminpage/adminpage.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 registerLocaleData(en);
 
 const antDesignIcons = AllIcons as {
-  [key: string] : IconDefinition;
+  [key: string]: IconDefinition;
 };
 const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
 
@@ -104,7 +106,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     HomeComponent,
     PolicySaleComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminpageComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -117,7 +121,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     NzStepsModule,
     NzLayoutModule,
     NzBreadCrumbModule,
-    NzIconModule.forChild(icons),NzAffixModule,
+    NzIconModule.forChild(icons), NzAffixModule,
     NzAlertModule,
     NzAnchorModule,
     NzAutocompleteModule,
@@ -187,7 +191,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     NzPipesModule
 
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US },{ provide: NZ_ICONS, useValue: icons }],
+  providers: [{ provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons }, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

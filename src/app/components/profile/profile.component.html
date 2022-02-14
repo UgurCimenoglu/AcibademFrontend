@@ -1,0 +1,25 @@
+<div id="profileTable">
+    <h2>Profilim</h2>
+    <nz-table #basicTable [nzData]="sales">
+        <thead>
+            <tr>
+                <th>Poliçe İsmi</th>
+                <th>Satın Alan</th>
+                <th>Taksit</th>
+                <th>Tutar</th>
+                <th>Kalan Taksit</th>
+                <th>Taksit Birim Fiyatı</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td>{{ data.policyName }}</td>
+                <td>{{ data.fullName }}</td>
+                <td>{{ data.totalInstallment }}</td>
+                <td>{{ data.totalPrice }}</td>
+                <td>{{ data.remainingInstallment }}</td>
+                <td>{{ data.pricePerInstallment }}</td>
+            </tr>
+        </tbody>
+    </nz-table>
+</div>

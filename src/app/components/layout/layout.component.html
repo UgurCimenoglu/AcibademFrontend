@@ -1,47 +1,49 @@
 <nz-layout>
-    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
-      <div class="logo" id="acibadem-logo-div">
-          <img id="acibadem-logo" src="https://www.acibadem.com.tr/assets/images/acibadem-saglik-grubu.png" alt="" srcset="">
-      </div>
-      <ul nz-menu nzTheme="dark" nzMode="inline">
-        
-          <li nz-menu-item>
-            <i nz-icon nzType="login" nzTheme="outline"></i>
-            <span>Giriş</span>
-          </li>
-          <li nz-menu-item>
-            <i nz-icon nzType="form" nzTheme="outline"></i>
-            <span>Kayıt Ol</span>
-          </li>
-          <li nz-menu-item>
-            <i nz-icon nzType="profile" nzTheme="outline"></i>
-            <span>Profilim</span>
-          </li>
-          <li nz-menu-item>
-            <i nz-icon nzType="home" nzTheme="outline"></i>
-            <span>Anasayfa</span>
-          </li>
-        <li nz-menu-item>
-          <i nz-icon nzType="heart" nzTheme="outline"></i>
-          <span>Poliçe Satın Al</span>
-        </li>
-      </ul>
-    </nz-sider>
-    <nz-layout>
-      <nz-header>
-        <i
-          class="trigger"
-          nz-icon
-          [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-          (click)="isCollapsed = !isCollapsed"
-        ></i>
-      </nz-header>
-      <nz-content>
-          <app-home></app-home>
-          <app-policy-sale></app-policy-sale>
-          <app-login></app-login>
-          <app-register></app-register>
-      </nz-content>
-      <nz-footer>©2022 Uğur Çimenoğlu - Bupa Acıbadem</nz-footer>
-    </nz-layout>
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="logo" id="acibadem-logo-div">
+      <img id="acibadem-logo" src="https://www.acibadem.com.tr/assets/images/acibadem-saglik-grubu.png" alt=""
+        srcset="">
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+
+      <li *ngIf="!isAuth()" routerLink="/login" nz-menu-item>
+        <i nz-icon nzType="login" nzTheme="outline"></i>
+        <span>Giriş</span>
+      </li>
+      <li *ngIf="!isAuth()" routerLink="/register" nz-menu-item>
+        <i nz-icon nzType="form" nzTheme="outline"></i>
+        <span>Kayıt Ol</span>
+      </li>
+      <li nz-menu-item routerLink="/">
+        <i nz-icon nzType="home" nzTheme="outline"></i>
+        <span>Anasayfa</span>
+      </li>
+      <li nz-menu-item routerLink="profil">
+        <i nz-icon nzType="profile" nzTheme="outline"></i>
+        <span>Profilim</span>
+      </li>
+      <li nz-menu-item routerLink="/police-satin-al">
+        <i nz-icon nzType="heart" nzTheme="outline"></i>
+        <span>Poliçe Satın Al</span>
+      </li>
+      <li nz-menu-item routerLink="/admin">
+        <i nz-icon nzType="heart" nzTheme="outline"></i>
+        <span>ADMIN SAYFASI</span>
+      </li>
+      <li *ngIf="isAuth()" (click)="logOut()" nz-menu-item>
+        <i nz-icon nzType="logout" nzTheme="outline"></i>
+        <span>Çıkış Yap!</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        (click)="isCollapsed = !isCollapsed"></i>
+    </nz-header>
+    <nz-content>
+      <router-outlet></router-outlet>
+    </nz-content>
+    <nz-footer>©2022 Uğur Çimenoğlu - Bupa Acıbadem</nz-footer>
   </nz-layout>
+</nz-layout>

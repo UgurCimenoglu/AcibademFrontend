@@ -1,20 +1,101 @@
-<nz-steps [nzCurrent]="current">
-  <nz-step nzTitle="Poliçe ve Ödeme Seçenekleri" nzDescription=" Poliçe ve Ödeme Seçiminizi Yapınız..."></nz-step>
-  <nz-step nzTitle="Ödeme Sayfası" nzDescription="Farklı Ödeme Yöntemleri..."></nz-step>
-  <nz-step nzTitle="Sonuç" nzDescription="Ödeme Sonucunuz..."></nz-step>
-</nz-steps>
+<div class="stepSection">
+  <nz-steps [nzCurrent]="current">
+    <nz-step nzTitle="Poliçe ve Ödeme Seçenekleri" nzDescription=" Poliçe ve Ödeme Seçiminizi Yapınız..."></nz-step>
+    <nz-step nzTitle="Ödeme Sayfası" nzDescription="Farklı Ödeme Yöntemleri..."></nz-step>
+    <nz-step nzTitle="Sonuç" nzDescription="Ödeme Sonucunuz..."></nz-step>
+  </nz-steps>
 
-<div class="steps-content">{{ index }}</div>
-<div class="steps-action">
-  <button nz-button nzType="default" (click)="pre()" *ngIf="current > 0">
-    <span>Previous</span>
-  </button>
-  <button nz-button nzType="default" (click)="next()" *ngIf="current < 2">
-    <span>Next</span>
-  </button>
-  <button nz-button nzType="primary" (click)="done()" *ngIf="current === 2">
-    <span>Done</span>
-  </button>
+  <div class="steps-content">
+    <div [formGroup]="saleQueryForm" nz-row *ngIf="index === 'First-content' ? true: false">
+      <div nz-col nzSpan="24">
+        <h4>Poliçe ve taksit seçiniz!</h4>
+      </div>
+      <div nz-col nzSpan="12">
+        <div>
+          <nz-radio-group formControlName="policyId" [(ngModel)]="policyValue" nzButtonStyle="solid">
+            <label *ngFor="let policy of Policies" (click)="setCurrentPolicyForCard(policy.id)" nz-radio-button
+              nzValue={{policy.id}}>{{policy.name}}</label>
+
+          </nz-radio-group>
+        </div>
+        <div>
+          <div *ngIf="selectedPolicyForCard!=null" style="padding:30px;">
+            <div nz-row>
+              <div nz-col nzOffset=8 nzSpan="8">
+                <nz-card nzTitle="{{selectedPolicyForCard.name}}">
+                  <p>{{selectedPolicyForCard.description}}</p>
+                  <strong>Fiyat: {{selectedPolicyForCard.price}} TL</strong>
+                </nz-card>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div nz-col nzSpan="12">
+        <div>
+          <nz-radio-group formControlName="installmentId" [(ngModel)]="installmentValue" nzButtonStyle="solid">
+            <label *ngFor="let installment of Installments" (click)="setCurrentInstallmentForCard(installment.id)"
+              nz-radio-button nzValue={{installment.id}}>{{installment.installments}} Taksit</label>
+          </nz-radio-group>
+        </div>
+        <div>
+          <div *ngIf="selectedInstallmentForCard!=null" style="padding:30px;">
+            <div nz-row>
+              <div nz-col nzOffset=8 nzSpan="8">
+                <nz-card nzTitle="{{selectedInstallmentForCard.installments}} Taksit">
+                  <p>{{selectedInstallmentForCard.description}}</p>
+                </nz-card>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div nz-row *ngIf="index === 'Second-content' ? true : false">
+      <div class="card  mb-50">
+        <div class="card-title mx-auto">Alışverişi Tamamla </div>
+        <form [formGroup]="paymentForm">
+          <span id="card-header">Kart Bilgileri</span>
+          <div class="row-1">
+            <div class="row row-2"> <input type="text" formControlName="cardName" placeholder="Kart Üzerindeki İsim">
+            </div>
+          </div>
+          <div class="row three">
+            <div class="col-6">
+              <div class="row-1">
+                <div class="row row-2"> <input type="text" formControlName="cardNumber"
+                    placeholder="xxxx-xxxx-xxxx-xxxx">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-2"> <input type="text" formControlName="validDate" placeholder="xx/xx"> </div>
+            <div class="col-2"> <input type="text" formControlName="cvv" placeholder="cvv"> </div>
+          </div>
+          <button type="button" (click)="payPolicy()" class="btn d-flex mx-auto"><b>Öde {{selectedPolicyForCard.price}}
+              TL</b></button>
+        </form>
+      </div>
+    </div>
+    <div nz-row *ngIf="index === 'third-content' ? true : false">
+      <div class="">
+        <strong>Satın Alma Başarılı!</strong>
+      </div>
+    </div>
+  </div>
+  <div class="steps-action">
+    <button nz-button nzType="default" (click)="pre()" *ngIf="current > 0">
+      <span>Previous</span>
+    </button>
+    <button nz-button nzType="default" (click)="next()" *ngIf="current < 2">
+      <span>Next</span>
+    </button>
+    <button nz-button nzType="primary" (click)="done()" *ngIf="current === 2">
+      <span>Done</span>
+    </button>
+  </div>
 </div>
-
-<p *ngFor="let policy of Policies">{{policy.name}}</p>

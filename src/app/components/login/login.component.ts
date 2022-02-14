@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { LoginService } from './../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -8,29 +11,39 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  validateForm!: FormGroup;
+  loginForm: FormGroup;
 
   submitForm(): void {
-    if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
-    } else {
-      Object.values(this.validateForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
-    }
+
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private loginService: LoginService,private notification: NzNotificationService, private router: Router) { }
 
   ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true]
-    });
+    this.createLoginForm();
   }
- 
+
+  createLoginForm() {
+    this.loginForm = this.fb.group({
+      email: [null, [Validators.required]],
+      password: [null, [Validators.required]]
+    })
+  }
+
+  login() {
+    if (this.loginForm.valid) {
+      var login = Object.assign({}, this.loginForm.value);
+      this.loginService.login(login)
+        .subscribe(response => {
+          if (response.statusCode === 200) {
+            this.notification.success("Başarılı","Giriş Başarılı!");
+            localStorage.setItem("token",response.data.token);
+            localStorage.setItem("email",response.data.email);
+            this.router.navigate([""]);
+          }else{
+            this.notification.error("Hata","Kullanıcı adı vey şifre hatalıdır!")
+          }
+        })
+    }
+  }
 }
